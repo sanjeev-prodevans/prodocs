@@ -131,7 +131,7 @@ You'll see your beautiful documentation site live!
 
 ---
 
-Happy documenting with **ProDocs**!  Documentation Made Easy
+Happy documenting with **ProDocs** from prodevans!  Documentation Made Easy
 
 Special Thanks to **Gagan** Sir for his guidance and support in creating this documentation tool. Your expertise has been invaluable in shaping ProDocs into a powerful solution for developers everywhere!, Sanjeev Senapati, Shibram Mishra and the ProDocs team.
 
