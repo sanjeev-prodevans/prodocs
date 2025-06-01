@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ .PageTitle }} | {{ .SiteName }}</title>
+    <meta name="description" content="{{ .SiteDescription }}">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="icon" href="/{{ .Theme.Logo }}">
+    <style>html { scroll-behavior: smooth; }</style>
+</head>
+<body>
+    <nav>
+        <img src="/{{ .Theme.Logo }}" alt="Logo" height="32">
+        <span class="title">{{ .SiteName }}</span>
+        <span class="site-description-sep" aria-hidden="true">&nbsp;&nbsp;//&nbsp;</span>
+        <span class="site-description"> {{ .SiteDescription }}</span>
+        <!-- Search Bar (right side, rounded) -->
+        <div class="search-bar-container">
+            <form class="search-bar-form" action="/search" method="get">
+                <input type="text" name="q" placeholder="Search..." value="{{ .Query }}">
+                <button type="submit" title="Search">🔍</button>
+            </form>
+        </div>
+    </nav>
+    <div class="container">
+        <aside class="menu">
+            {{ .Sidebar }}
+        </aside>
+        <main>
+            {{ .TOC }}
+            {{ if .Query }}
+              <h2>Search Results for "{{ .Query }}"</h2>
+              {{ if .Results }}
+                <ul>
+                  {{ range .Results }}
+                    <li>
+                      <a href="{{ .Path }}"><strong>{{ .Title }}</strong></a>
+                      <small style="color:gray;">({{ .Path }})</small>
+                    </li>
+                  {{ end }}
+                </ul>
+              {{ else }}
+                <p>No results found.</p>
+              {{ end }}
+            {{ else }}
+              <article class="doc-content">
+                {{ .Content }}
+              </article>
+            {{ end }}
+        </main>
+    </div>
+    <footer>
+        <p>Powered by <b>ProDocs</b>. Minimalist, fast, and beautiful.</p>
+    </footer>
+    <script>
+      // Smooth jump to anchor on page load if hash present
+      window.addEventListener("DOMContentLoaded", function() {
+        if(window.location.hash) {
+          var el = document.getElementById(window.location.hash.substr(1));
+          if(el) el.scrollIntoView();
+        }
+      });
+      // Optional: highlight anchor target on click/jump
+      (function() {
+        function highlightAnchor() {
+          var hash = window.location.hash.substr(1);
+          if (!hash) return;
+          var el = document.getElementById(hash);
+          if (el) {
+            el.classList.add("anchor-highlight");
+            setTimeout(function() {
+              el.classList.remove("anchor-highlight");
+            }, 800);
+          }
+        }
+        window.addEventListener("hashchange", highlightAnchor);
+        window.addEventListener("DOMContentLoaded", highlightAnchor);
+      })();
+    </script>
+    <style>
+      /* Optional: highlight heading when jumped to via anchor */
+      .anchor-highlight {
+        animation: anchorPop 0.7s;
+        background: #fffde7 !important;
+      }
+      @keyframes anchorPop {
+        0%   { background: #fffde7; }
+        80%  { background: #fffde7; }
+        100% { background: none; }
+      }
+    </style>
+</body>
+</html>
