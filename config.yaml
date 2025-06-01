@@ -1,0 +1,17 @@
+site_name: "prodocs"
+site_description: "A minimalist go based md file based documentation."
+theme:
+  primary_color: "#2980b9"
+  accent_color: "#e67e22"
+  logo: "assets/logo.png"
+server:
+  host: "127.0.0.1"
+  port: 8080
+pages:
+  - title: "Home"
+    path: "index.md"
+  - title: "Getting Started"
+    children:
+      - title: "Install"
+        path: "getting-started/install.md"
+

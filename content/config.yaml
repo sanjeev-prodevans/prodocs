@@ -1,0 +1,26 @@
+site_name: "ProDocs"
+site_description: "A minimalist Go-based ReadTheDocs alternative."
+theme:
+  primary_color: "#2980b9"
+  accent_color: "#e67e22"
+  logo: "assets/logo.png"
+server:
+  host: "127.0.0.1"
+  port: 8080
+pages:
+  - title: "Home"
+    path: "index.md"
+  - title: "Getting Started"
+    children:
+      - title: "Install"
+        path: "getting-started/install.md"
+      - title: "Usage"
+        path: "getting-started/usage.md"
+  - title: "Advanced"
+    children:
+      - title: "Customization"
+        path: "advanced/customization.md"
+  - title: "Documentation"
+    children:
+      - title: "docs"
+        path: "docs/docs.md"
